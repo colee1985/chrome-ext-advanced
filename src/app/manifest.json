@@ -1,0 +1,44 @@
+{
+  "name": "速卖通推广快捷移除高价词",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "在速卖通推广管理页面，批量处理关键词时，快捷选中高于0.35元的高价词，然后点移除。",
+  "icons": {
+    "16": "images/icon16.png",
+    "128": "images/icon128.png"
+  },
+  "default_locale": "en",
+  "background": {
+    "scripts": [
+      "scripts/chromereload.js",
+      "scripts/background.js"
+    ]
+  },
+  "browser_action": {
+    "default_icon": {
+      "16": "images/icon16.png",
+      "128": "images/icon128.png"
+    },
+    "default_title": "smt",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "omnibox": {
+    "keyword": "smt"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://bp.aliexpress.com/*"],
+      "js": [
+        "vendor/jquery.2.1.4.js",
+        "vendor/vue.min.js",
+        "scripts/contentscript.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+  "permissions": [
+    "management"
+  ]
+}
